@@ -4,12 +4,16 @@ import numpy as np
 import time
 
 # Load the model
-model = joblib.load('final_model.joblib')
+st.set_page_config(page_title="Gold Price Prediction", page_icon="💰", layout="centered")
+try:
+    model = joblib.load('final_model.joblib')
+except Exception as e:
+    model = None
+    st.error(f"❌ Model failed to load! Check your path and file. {e}")
 
 # Static USD to INR conversion
 usd_to_inr = 83.50
 
-st.set_page_config(page_title="Gold Price Prediction", page_icon="💰", layout="centered")
 
 st.title("💰 Gold Price Predictor")
 st.subheader("Predict the price of Gold in USD and INR.")
